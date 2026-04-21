@@ -65,15 +65,21 @@ function Content({ children }: { children: React.ReactNode }) {
   return (
     <TRPCProvider>
       <header className="sticky left-0 right-0 top-0 z-50 flex h-14 items-center justify-between border-b bg-background/90 px-4 backdrop-blur-md after:absolute after:bottom-[-1px] after:left-0 after:right-0 after:h-px after:bg-gradient-to-r after:from-primary/45 after:via-[#9966ff]/35 after:to-[hsl(var(--success))]/45 sm:px-8">
-        <Link
-          className="font-display text-sm font-semibold text-foreground transition-colors hover:text-primary sm:text-base"
-          href="/"
-        >
-          Spliit
-          <span className="hidden text-muted-foreground sm:inline">
-            .jorisbakx.nl
-          </span>
-        </Link>
+        <div className="flex items-center gap-3">
+          <Link
+            className="text-xs text-muted-foreground transition-colors hover:text-foreground"
+            href="https://jorisbakx.nl"
+          >
+            ← jorisbakx.nl
+          </Link>
+          <span className="text-border">|</span>
+          <Link
+            className="font-display text-sm font-semibold text-foreground transition-colors hover:text-primary sm:text-base"
+            href="/"
+          >
+            Spliit
+          </Link>
+        </div>
         <div role="navigation" aria-label="Menu" className="flex">
           <ul className="flex items-center gap-1 text-sm">
             <li>
@@ -99,12 +105,21 @@ function Content({ children }: { children: React.ReactNode }) {
       <div className="flex flex-1 flex-col">{children}</div>
 
       <footer className="mx-auto mt-12 flex w-full max-w-5xl flex-col gap-3 border-t px-4 py-6 text-xs text-muted-foreground sm:mt-20 sm:flex-row sm:items-center sm:justify-between sm:px-8">
-        <Link
-          href="/"
-          className="font-display text-sm font-semibold text-foreground transition-colors hover:text-primary"
-        >
-          spliit.jorisbakx.nl
-        </Link>
+        <div className="flex items-center gap-3">
+          <Link
+            href="https://jorisbakx.nl"
+            className="transition-colors hover:text-foreground"
+          >
+            jorisbakx.nl
+          </Link>
+          <span className="text-border">·</span>
+          <Link
+            href="/"
+            className="font-display text-sm font-semibold text-foreground transition-colors hover:text-primary"
+          >
+            Spliit
+          </Link>
+        </div>
         <div className="flex flex-col gap-1 sm:items-end">
           <span>Private shared expenses</span>
           <span className="[&_a]:underline [&_a]:decoration-border [&_a]:underline-offset-4 [&_a:hover]:text-foreground">
