@@ -127,7 +127,7 @@ export function GroupForm({
           <CardHeader>
             <CardTitle>{t('title')}</CardTitle>
           </CardHeader>
-          <CardContent className="grid grid-cols-1 sm:grid-cols-2 gap-4">
+          <CardContent className="grid grid-cols-1 gap-4 sm:grid-cols-2">
             <FormField
               control={form.control}
               name="name"
@@ -210,7 +210,7 @@ export function GroupForm({
               )}
             />
 
-            <div className="col-span-2">
+            <div className="sm:col-span-2">
               <FormField
                 control={form.control}
                 name="information"
@@ -263,7 +263,7 @@ export function GroupForm({
                                 <HoverCardTrigger>
                                   <Button
                                     variant="ghost"
-                                    className="text-destructive-"
+                                    className="text-destructive"
                                     type="button"
                                     size="icon"
                                     disabled
@@ -318,7 +318,7 @@ export function GroupForm({
             <CardDescription>{t('Settings.description')}</CardDescription>
           </CardHeader>
           <CardContent>
-            <div className="grid sm:grid-cols-2 gap-4">
+            <div className="grid gap-4 sm:grid-cols-2">
               {activeUser !== null && (
                 <FormItem>
                   <FormLabel>{t('Settings.ActiveUserField.label')}</FormLabel>
@@ -359,7 +359,7 @@ export function GroupForm({
           </CardContent>
         </Card>
 
-        <div className="flex mt-4 gap-2">
+        <div className="mt-4 flex gap-2">
           <SubmitButton
             loadingContent={t(group ? 'Settings.saving' : 'Settings.creating')}
             onClick={updateActiveUser}

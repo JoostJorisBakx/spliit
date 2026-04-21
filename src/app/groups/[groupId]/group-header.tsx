@@ -10,18 +10,21 @@ export const GroupHeader = () => {
   const { isLoading, groupId, group } = useCurrentGroup()
 
   return (
-    <div className="flex flex-col justify-between gap-3">
-      <h1 className="font-bold text-2xl">
-        <Link href={`/groups/${groupId}`}>
+    <div className="surface-in flex flex-col justify-between gap-4 border-b pb-5">
+      <h1 className="font-display text-3xl font-bold leading-none text-foreground">
+        <Link
+          href={`/groups/${groupId}`}
+          className="transition-colors hover:text-primary"
+        >
           {isLoading ? (
             <Skeleton className="mt-1.5 mb-1.5 h-5 w-32" />
           ) : (
-            <div className="flex">{group.name}</div>
+            <span className="flex">{group.name}</span>
           )}
         </Link>
       </h1>
 
-      <div className="flex gap-2 justify-between">
+      <div className="flex flex-col justify-between gap-3 sm:flex-row sm:items-center">
         <GroupTabs groupId={groupId} />
         {group && <ShareButton group={group} />}
       </div>

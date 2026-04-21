@@ -142,7 +142,7 @@ const ExpenseListForSearch = ({
 
   if (expenses.length === 0)
     return (
-      <p className="px-6 text-sm py-6">
+      <p className="px-6 py-6 text-sm text-muted-foreground">
         {t('noExpenses')}{' '}
         <Button variant="link" asChild className="-m-4">
           <Link href={`/groups/${groupId}/expenses/create`}>
@@ -159,10 +159,10 @@ const ExpenseListForSearch = ({
         if (!groupExpenses || groupExpenses.length === 0) return null
 
         return (
-          <div key={expenseGroup}>
+          <div key={expenseGroup} className="flex flex-col gap-2">
             <div
               className={
-                'text-muted-foreground text-xs pl-4 sm:pl-6 py-1 font-semibold sticky top-16 bg-white dark:bg-[#1b1917]'
+                'sticky top-14 z-10 border-b bg-background/90 py-2 pl-4 text-xs font-semibold uppercase tracking-[0.12em] text-muted-foreground backdrop-blur sm:pl-6'
               }
             >
               {t(`Groups.${expenseGroup}`)}
@@ -186,12 +186,12 @@ const ExpenseListForSearch = ({
 
 const ExpensesLoading = forwardRef<HTMLDivElement>((_, ref) => {
   return (
-    <div ref={ref}>
-      <Skeleton className="mx-4 sm:mx-6 mt-1 mb-2 h-3 w-32 rounded-full" />
+    <div ref={ref} className="flex flex-col gap-2">
+      <Skeleton className="mx-4 mb-2 mt-1 h-3 w-32 rounded-full sm:mx-6" />
       {[0, 1, 2].map((i) => (
         <div
           key={i}
-          className="flex justify-between items-start px-2 sm:px-6 py-4 text-sm gap-2"
+          className="flex items-start justify-between gap-2 px-2 py-4 text-sm sm:px-6"
         >
           <div className="flex-0 pl-2 pr-1">
             <Skeleton className="h-4 w-4 rounded-full" />

@@ -34,13 +34,13 @@ export default function GroupExpensesPageClient({
 
   return (
     <>
-      <Card className="mb-4 rounded-none -mx-4 border-x-0 sm:border-x sm:rounded-lg sm:mx-0">
+      <Card className="-mx-4 mb-4 rounded-none border-x-0 sm:mx-0 sm:rounded-lg sm:border-x">
         <div className="flex flex-1">
           <CardHeader className="flex-1 p-4 sm:p-6">
             <CardTitle>{t('title')}</CardTitle>
             <CardDescription>{t('description')}</CardDescription>
           </CardHeader>
-          <CardHeader className="p-4 sm:p-6 flex flex-row space-y-0 gap-2">
+          <CardHeader className="flex flex-row gap-2 p-4 sm:p-6">
             <ExportButton groupId={groupId} />
             {enableReceiptExtract && <CreateFromReceiptButton />}
             <Button asChild size="icon">
@@ -54,7 +54,7 @@ export default function GroupExpensesPageClient({
           </CardHeader>
         </div>
 
-        <CardContent className="p-0 pt-2 pb-4 sm:pb-6 flex flex-col gap-4 relative">
+        <CardContent className="relative flex flex-col gap-4 p-0 pb-4 pt-2 sm:pb-6">
           <ExpenseList />
         </CardContent>
       </Card>

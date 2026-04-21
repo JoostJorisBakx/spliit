@@ -44,7 +44,7 @@ export function RecentGroupListCard({
     <li key={group.id}>
       <Button
         variant="secondary"
-        className="h-fit w-full py-3 rounded-lg border bg-card shadow-sm"
+        className="h-fit w-full justify-start rounded-lg border bg-card/80 py-4 text-left shadow-none hover:border-primary/25 hover:bg-card"
         asChild
       >
         <div
@@ -52,10 +52,10 @@ export function RecentGroupListCard({
           onClick={() => router.push(`/groups/${group.id}`)}
         >
           <div className="w-full flex flex-col gap-1">
-            <div className="text-base flex gap-2 justify-between">
+            <div className="flex justify-between gap-2 text-base">
               <Link
                 href={`/groups/${group.id}`}
-                className="flex-1 overflow-hidden text-ellipsis"
+                className="flex-1 truncate font-semibold text-foreground"
               >
                 {group.name}
               </Link>
@@ -125,7 +125,7 @@ export function RecentGroupListCard({
                 </DropdownMenu>
               </span>
             </div>
-            <div className="text-muted-foreground font-normal text-xs">
+            <div className="text-xs font-normal text-muted-foreground">
               {groupDetail ? (
                 <div className="w-full flex items-center justify-between">
                   <div className="flex items-center">

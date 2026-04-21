@@ -10,7 +10,6 @@ import { TRPCProvider } from '@/trpc/client'
 import type { Metadata, Viewport } from 'next'
 import { NextIntlClientProvider, useTranslations } from 'next-intl'
 import { getLocale, getMessages } from 'next-intl/server'
-import Image from 'next/image'
 import Link from 'next/link'
 import { Suspense } from 'react'
 import './globals.css'
@@ -18,27 +17,25 @@ import './globals.css'
 export const metadata: Metadata = {
   metadataBase: new URL(env.NEXT_PUBLIC_BASE_URL),
   title: {
-    default: 'Spliit · Share Expenses with Friends & Family',
-    template: '%s · Spliit',
+    default: 'Spliit - spliit.jorisbakx.nl',
+    template: '%s - Spliit',
   },
   description:
-    'Spliit is a minimalist web application to share expenses with friends and family. No ads, no account, no problem.',
+    'Private expense splitting for shared dinners, trips, and households on jorisbakx.nl.',
   openGraph: {
-    title: 'Spliit · Share Expenses with Friends & Family',
+    title: 'Spliit - spliit.jorisbakx.nl',
     description:
-      'Spliit is a minimalist web application to share expenses with friends and family. No ads, no account, no problem.',
+      'Private expense splitting for shared dinners, trips, and households on jorisbakx.nl.',
     images: `/banner.png`,
     type: 'website',
     url: '/',
   },
   twitter: {
     card: 'summary_large_image',
-    creator: '@scastiel',
-    site: '@scastiel',
     images: `/banner.png`,
-    title: 'Spliit · Share Expenses with Friends & Family',
+    title: 'Spliit - spliit.jorisbakx.nl',
     description:
-      'Spliit is a minimalist web application to share expenses with friends and family. No ads, no account, no problem.',
+      'Private expense splitting for shared dinners, trips, and households on jorisbakx.nl.',
   },
   appleWebApp: {
     capable: true,
@@ -60,36 +57,31 @@ export const metadata: Metadata = {
 }
 
 export const viewport: Viewport = {
-  themeColor: '#047857',
+  themeColor: '#0a0a0c',
 }
 
 function Content({ children }: { children: React.ReactNode }) {
   const t = useTranslations()
   return (
     <TRPCProvider>
-      <header className="fixed top-0 left-0 right-0 h-16 flex justify-between bg-white dark:bg-gray-950 bg-opacity-50 dark:bg-opacity-50 p-2 border-b backdrop-blur-sm z-50">
+      <header className="sticky left-0 right-0 top-0 z-50 flex h-14 items-center justify-between border-b bg-background/90 px-4 backdrop-blur-md after:absolute after:bottom-[-1px] after:left-0 after:right-0 after:h-px after:bg-gradient-to-r after:from-primary/45 after:via-[#9966ff]/35 after:to-[hsl(var(--success))]/45 sm:px-8">
         <Link
-          className="flex items-center gap-2 hover:scale-105 transition-transform"
+          className="font-display text-sm font-semibold text-foreground transition-colors hover:text-primary sm:text-base"
           href="/"
         >
-          <h1>
-            <Image
-              src="/logo-with-text.png"
-              className="m-1 h-auto w-auto"
-              width={(35 * 522) / 180}
-              height={35}
-              alt="Spliit"
-            />
-          </h1>
+          Spliit
+          <span className="hidden text-muted-foreground sm:inline">
+            .jorisbakx.nl
+          </span>
         </Link>
         <div role="navigation" aria-label="Menu" className="flex">
-          <ul className="flex items-center text-sm">
+          <ul className="flex items-center gap-1 text-sm">
             <li>
               <Button
                 variant="ghost"
                 size="sm"
                 asChild
-                className="-my-3 text-primary"
+                className="text-muted-foreground hover:text-foreground"
               >
                 <Link href="/groups">{t('Header.groups')}</Link>
               </Button>
@@ -104,42 +96,35 @@ function Content({ children }: { children: React.ReactNode }) {
         </div>
       </header>
 
-      <div className="pt-16 flex-1 flex flex-col">{children}</div>
+      <div className="flex flex-1 flex-col">{children}</div>
 
-      <footer className="sm:p-8 md:p-16 sm:mt-16 sm:text-sm md:text-base md:mt-32 bg-slate-50 dark:bg-card border-t p-6 mt-8 flex flex-col sm:flex-row sm:justify-between gap-4 text-xs [&_a]:underline">
-        <div className="flex flex-col space-y-2">
-          <div className="sm:text-lg font-semibold text-base flex space-x-2 items-center">
-            <Link className="flex items-center gap-2" href="/">
-              <Image
-                src="/logo-with-text.png"
-                className="m-1 h-auto w-auto"
-                width={(35 * 522) / 180}
-                height={35}
-                alt="Spliit"
-              />
-            </Link>
-          </div>
-          <div className="flex flex-col space-y a--no-underline-text-white">
-            <span>{t('Footer.madeIn')}</span>
-            <span>
-              {t.rich('Footer.builtBy', {
-                author: (txt) => (
-                  <a href="https://scastiel.dev" target="_blank" rel="noopener">
-                    {txt}
-                  </a>
-                ),
-                source: (txt) => (
-                  <a
-                    href="https://github.com/spliit-app/spliit/graphs/contributors"
-                    target="_blank"
-                    rel="noopener"
-                  >
-                    {txt}
-                  </a>
-                ),
-              })}
-            </span>
-          </div>
+      <footer className="mx-auto mt-12 flex w-full max-w-5xl flex-col gap-3 border-t px-4 py-6 text-xs text-muted-foreground sm:mt-20 sm:flex-row sm:items-center sm:justify-between sm:px-8">
+        <Link
+          href="/"
+          className="font-display text-sm font-semibold text-foreground transition-colors hover:text-primary"
+        >
+          spliit.jorisbakx.nl
+        </Link>
+        <div className="flex flex-col gap-1 sm:items-end">
+          <span>Private shared expenses</span>
+          <span className="[&_a]:underline [&_a]:decoration-border [&_a]:underline-offset-4 [&_a:hover]:text-foreground">
+            {t.rich('Footer.builtBy', {
+              author: (txt) => (
+                <a href="https://scastiel.dev" target="_blank" rel="noopener">
+                  {txt}
+                </a>
+              ),
+              source: (txt) => (
+                <a
+                  href="https://github.com/spliit-app/spliit/graphs/contributors"
+                  target="_blank"
+                  rel="noopener"
+                >
+                  {txt}
+                </a>
+              ),
+            })}
+          </span>
         </div>
       </footer>
       <Toaster />
@@ -156,12 +141,12 @@ export default async function RootLayout({
   const messages = await getMessages()
   return (
     <html lang={locale} suppressHydrationWarning>
-      <ApplePwaSplash icon="/logo-with-text.png" color="#027756" />
-      <body className="min-h-[100dvh] flex flex-col items-stretch bg-slate-50 bg-opacity-30 dark:bg-background">
+      <ApplePwaSplash icon="/logo-with-text.png" color="#0a0a0c" />
+      <body className="flex min-h-[100dvh] flex-col items-stretch bg-background">
         <NextIntlClientProvider messages={messages}>
           <ThemeProvider
             attribute="class"
-            defaultTheme="system"
+            defaultTheme="dark"
             enableSystem
             disableTransitionOnChange
           >

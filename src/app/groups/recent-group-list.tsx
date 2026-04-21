@@ -144,7 +144,9 @@ function RecentGroupList_({
     <GroupsPage reload={refreshGroupsFromStorage}>
       {starredGroupInfo.length > 0 && (
         <>
-          <h2 className="mb-2">{t('starred')}</h2>
+          <h2 className="mb-2 text-xs font-semibold uppercase tracking-[0.12em] text-muted-foreground">
+            {t('starred')}
+          </h2>
           <GroupList
             groups={starredGroupInfo}
             groupDetails={data.groups}
@@ -157,7 +159,9 @@ function RecentGroupList_({
 
       {groupInfo.length > 0 && (
         <>
-          <h2 className="mt-6 mb-2">{t('recent')}</h2>
+          <h2 className="mb-2 mt-6 text-xs font-semibold uppercase tracking-[0.12em] text-muted-foreground">
+            {t('recent')}
+          </h2>
           <GroupList
             groups={groupInfo}
             groupDetails={data.groups}
@@ -170,7 +174,9 @@ function RecentGroupList_({
 
       {archivedGroupInfo.length > 0 && (
         <>
-          <h2 className="mt-6 mb-2 opacity-50">{t('archived')}</h2>
+          <h2 className="mb-2 mt-6 text-xs font-semibold uppercase tracking-[0.12em] text-muted-foreground opacity-50">
+            {t('archived')}
+          </h2>
           <div className="opacity-50">
             <GroupList
               groups={archivedGroupInfo}
@@ -200,7 +206,7 @@ function GroupList({
   refreshGroupsFromStorage: () => void
 }) {
   return (
-    <ul className="grid gap-2 sm:grid-cols-2">
+    <ul className="grid gap-3 sm:grid-cols-2">
       {groups.map((group) => (
         <RecentGroupListCard
           key={group.id}
@@ -223,22 +229,24 @@ function GroupsPage({
 }: PropsWithChildren<{ reload: () => void }>) {
   const t = useTranslations('Groups')
   return (
-    <>
-      <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-2">
-        <h1 className="font-bold text-2xl flex-1">
-          <Link href="/groups">{t('myGroups')}</Link>
-        </h1>
+    <div className="surface-in flex flex-col gap-6">
+      <div className="flex flex-col justify-between gap-3 border-b pb-5 sm:flex-row sm:items-center">
+        <div className="flex flex-col gap-1">
+          <h1 className="font-display text-3xl font-bold leading-none text-foreground">
+            <Link href="/groups">{t('myGroups')}</Link>
+          </h1>
+          <p className="text-sm text-muted-foreground">
+            Recent and shared expense groups.
+          </p>
+        </div>
         <div className="flex gap-2">
           <AddGroupByUrlButton reload={reload} />
           <Button asChild>
-            <Link href="/groups/create">
-              {/* <Plus className="w-4 h-4 mr-2" /> */}
-              {t('create')}
-            </Link>
+            <Link href="/groups/create">{t('create')}</Link>
           </Button>
         </div>
       </div>
       <div>{children}</div>
-    </>
+    </div>
   )
 }
